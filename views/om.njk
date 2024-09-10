@@ -1,0 +1,11 @@
+{% extends "layout.njk" %}
+{% block content %} 
+<h1> {{message}}</h1>
+<p>Hejsan hur går det</p>
+<p>KLICKA <a href="/">mig</a> För att gå tillbaka</p>
+<video width="560" 
+       height="315" 
+       controls="controls">
+    <source src="https://www.youtube.com/embed/XCag4bcb5ao?si=rp-EowxXXUBicqGx" type="video/mp4" /></video>
+<iframe width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{%endblock%}

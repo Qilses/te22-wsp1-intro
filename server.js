@@ -5,6 +5,7 @@ import nunjucks from 'nunjucks'
 import morgan from "morgan"
 
 import indexRouter from './Routs/index.js'
+import searchRouter from './Routs/search.js'
 
 //constant gör något hela tiden slutar aldig
 // lyssna på GET compost på websystem
@@ -17,6 +18,7 @@ express:app,
 app.use('/', indexRouter)
 app.use(express.static("public"))  //app.use läser in statisca filer
 app.use(morgan("dev"))
+app.use('/search', searchRouter)
 
 
 app.use ((req, res) => {

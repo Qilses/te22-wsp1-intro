@@ -1,43 +1,41 @@
 import express from 'express'
 
 import nunjucks from 'nunjucks'
+
+import morgan from "morgan"
+
+import indexRouter from './Routs/index.js'
+
 //constant gör något hela tiden slutar aldig
-const app = express() 
 // lyssna på GET compost på websystem
-nunjucks.configure('views', {
-autoscape: true,
+const app = express() 
+
+nunjucks.configure('views', { //Detta ska bara vara   
+autoescape: true,
 express:app,
-//Detta ska bara vara       
 })
+app.use('/', indexRouter)
+app.use(express.static("public"))  //app.use läser in statisca filer
+app.use(morgan("dev"))
 
-app.use(express.static("public"))   
-//app.use läser in statisca filer
 
-app.get('/', (req, res) => {
-    res.render('index.njk',{
-    message:"hello world",
-    title: "Nunjucks hello world",
+app.use ((req, res) => {
+//res.status(404).send('404 - not found')
+res.status(404).render('404.njk', {  
+      title: '404  not found' ,
     })
 })
 
-app.get('/om', (req, res) => {
-    res.render('om.njk',{
-    message:"hello world",
-    title: "Om",
-    })
-})
-
-app.listen(3000, () => (
+app.listen(3000, () => {
     console.log('server is running on http://localhost:3000')
 
-))
+})
 
 /*
 const PORT = process.env.PORT || 3000
-app.    listen(port,() =>{
+app.listen(3000, () => (
     console.log('server is running on http://localhost:3000')
-}) 
-*/
+} */
 
 
 

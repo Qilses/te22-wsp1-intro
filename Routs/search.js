@@ -1,6 +1,8 @@
-import express from "express";
+import express, { Router } from "express";
 
 const router = express.Router()
+
+
 
 router.get("/", (req, res) => {
     const query = req.query.q || ""
@@ -12,8 +14,6 @@ router.get("/", (req, res) => {
         title:"Search",
         query,
         names: filteredNames, 
-    })
-    
+    })    
 })
-
 export default router

@@ -1,12 +1,9 @@
 import express from 'express'
-
 import nunjucks from 'nunjucks'
-
 import morgan from "morgan"
-
 import indexRouter from './Routs/index.js'
 import searchRouter from './Routs/search.js'
-
+import calculatorRouter from './Routs/calculator.js'
 //constant gör något hela tiden slutar aldig
 // lyssna på GET compost på websystem
 const app = express() 
@@ -15,11 +12,13 @@ nunjucks.configure('views', { //Detta ska bara vara
 autoescape: true,
 express:app,
 })
+//app.use läser in statisca filer
 app.use('/', indexRouter)
-app.use(express.static("public"))  //app.use läser in statisca filer
+app.use(express.static("public"))  
 app.use(morgan("dev"))
 app.use('/search', searchRouter)
-
+app.use('/calculator', calculatorRouter)
+app.set('view engine', 'njk');
 
 app.use ((req, res) => {
 //res.status(404).send('404 - not found')
